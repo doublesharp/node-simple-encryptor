@@ -29,6 +29,7 @@
     "mocha": "^5"
   },
   "dependencies": {
+    "bfj": "^6.1.1",
     "scmp": "2.0.0"
   }
 }
