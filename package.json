@@ -29,7 +29,7 @@
     "mocha": "^5"
   },
   "dependencies": {
-    "bfj": "^6.1.1",
+    "bfj": "https://github.com/doublesharp/bfj.git",
     "scmp": "2.0.0"
   }
 }
