@@ -1,7 +1,5 @@
 var crypto = require('crypto');
 var scmp = require('scmp');
-var bfj = require('bfj');
-var Readable = require('stream').Readable;
 
 // Arbitrary min length, nothing should shorter than this:
 var MIN_KEY_LENGTH = 16;
@@ -80,10 +78,10 @@ module.exports = function(opts) {
     return doEncryption(json, iv);
   }
 
-  // Encrypt using async function, leverage bfj
+  // Encrypt using async function
   async function encryptAsync(obj) {
     // we can do this async to not block
-    var json = await bfj.stringify(obj);
+    var json = JSON.stringify(obj);
     var iv = await new Promise((resolve) => crypto.randomBytes(16, (err, iv) => resolve(iv)));
     return doEncryption(json, iv);
   }
@@ -157,7 +155,7 @@ module.exports = function(opts) {
       s.push(null);
 
       // Return the parsed object:
-      return await bfj.parse(s, { reviver });
+      return JSON.parse(s, reviver);
     } catch( e ) {
       // If we get an error log it and ignore it. Decrypting should never fail.
       if( debug ) {
